@@ -45,17 +45,17 @@ function FPSCounter(domFpsId){
 /**
  * 游戏对象类
  */
-function Object(){
+function GObject(){
     this.pos = {x:0,y:0},
     this.dom = null;
-    this.id = new Date().getTime();
-    this.update = function(){
-    },
-    this.createDom = function(){
-        this.dom = Dom.create();
-        this.dom.id = this.id;
-        return this.dom;
-    },
+    this.id = 0;
+    this.update = function(){}
+    this.createDom = function(id){
+        // this.dom = Dom.create();
+        // this.dom.id = ++this.idSeed;
+        // return this.dom;
+    }
+    this.render = function(){}
     this.setPosistion = function(x,y){
         this.pos.x = x;
         this.pos.y = y;
@@ -70,7 +70,8 @@ function Object(){
 function Game(domScreenId, domFpsId){
     this.domScreen = Dom.find(domScreenId);
     this.fps = new FPSCounter(domFpsId);
-    this.id = new Date().getTime();
+    this.idSeed = new Date().getTime();
+    // this.id = 0;
     this.objects = new Array();
     this.ticks = {last:0, current:0, delta:0};
     this.update = function(dt){
@@ -86,18 +87,20 @@ function Game(domScreenId, domFpsId){
         this.fps.render(dt);
     },
     this.addObject = function(obj){
-        obj.createDom();
+        this.idSeed++;
+        obj.createDom(this.idSeed);
         Dom.append(this.domScreen, obj.dom);
         this.objects.push(obj);
     },
     this.start = function(){
+        var that = this;
         this.ticks.current = new Date().getTime();
         requestAnimationFrame(function(){
-            game.ticks.current = new Date().getTime();
-            game.ticks.delta = game.ticks.current - game.ticks.last;
-            game.update(game.ticks.delta);
-            game.render(game.ticks.delta);
-            game.ticks.last = game.ticks.current;
+            that.ticks.current = new Date().getTime();
+            that.ticks.delta = that.ticks.current - that.ticks.last;
+            that.update(that.ticks.delta);
+            that.render(that.ticks.delta);
+            that.ticks.last = game.ticks.current;
             requestAnimationFrame(arguments.callee);
         });
     }
@@ -108,7 +111,7 @@ function Game(domScreenId, domFpsId){
  * 正方形
  */
 function Square(){
-    Object.call(this, null);
+    GObject.call(this, null);
 
     this.size = 20;
     this.direction = {x:1, y:1};
@@ -130,12 +133,13 @@ function Square(){
         this.dom.style.left = this.pos.x - this.size / 2;
         this.dom.style.top = this.pos.y - this.size / 2;
     },
-    this.createDom = function(){
+    this.createDom = function(id){
         this.dom = Dom.create();
+        this.id = id;
         this.dom.style.background = '#c22';
         this.dom.style.width = this.size + 'px';
         this.dom.style.height = this.size + 'px';
-        this.dom.id = this.id;
+        this.dom.id = id;
         return this.dom;
     }
 }
@@ -148,7 +152,9 @@ function createRandomSuare(){
 // 构建游戏
 var game = new Game('game_screen','game_fps');
 // 启动游戏
-game.start(game);
+game.start();
 // 添加正方形
+game.addObject(createRandomSuare());
+game.addObject(createRandomSuare());
 game.addObject(createRandomSuare());
 game.addObject(createRandomSuare());
