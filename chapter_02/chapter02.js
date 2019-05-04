@@ -4,7 +4,7 @@ var OBJECT_TYPE_BALL = 0x02;
 
 var DESK_BOUNDS = {right:800,left: 0,top: 0, bottom : 450};
 // 摩擦力，1秒减少20
-var VAR_FRICTION = 20;
+var VAR_FRICTION = 0;
 /**
  * 球
  */
@@ -14,7 +14,7 @@ function Ball(){
     // 半径
     this.radius = 20;
     // 速度
-    this.speed = 200;
+    this.speed = 50;
     // 是否已更新
     this.isUpdated = false;
     // 设置方向
@@ -94,14 +94,45 @@ function Chapter02(screenId, fpsId){
                     if(objOther.getType() == OBJECT_TYPE_BALL){
                         var distance = GPointUtils.distance(obj.getPosition(),objOther.getPosition());
                         if(distance <= obj.radius + objOther.radius){
-                            var objDirectionX = obj.getDirection().x;
-                            var objDirectionY = obj.getDirection().y;
-                            obj.setDirection(objOther.getDirection().x, objOther.getDirection().y);
-                            objOther.setDirection(objDirectionX, objDirectionY);
-                            
-                            // 有重叠调整位置
+                            // 计算新方向
                             var objPos = obj.getPosition();
                             var objOtherPos = objOther.getPosition();
+                            var ccVector = new Vector2d(objPos.x - objOtherPos.x, objPos.y - objOtherPos.y);
+                           
+                            var ccNormal = ccVector.getNormal();
+
+                            var objDirectionX = obj.getDirection().x;
+                            var objDirectionY = obj.getDirection().y;
+                            //obj.setDirection(objOther.getDirection().x, objOther.getDirection().y);
+                            //obj.getDirection().reflex(ccVector);
+                            //var p = obj.getDirection().getNormal();
+
+                            var angleOfDirection = obj.getDirection().getAngle(objOther.getDirection());
+                            if(angleOfDirection == 0){
+                                // 方向不变，调整速度
+                                var speed = (obj.speed + objOther.speed)/2;
+                                obj.speed = speed;
+                                objOther.speed = speed;
+                            }else{
+                                var angle = obj.getDirection().getAngle(ccNormal);
+                                if(angle<90){
+                                    obj.getDirection().reflex(GVector2dUtils.negate(ccNormal));
+                                }else{
+                                    obj.getDirection().reflex(ccNormal);
+                                }
+                                var angleOther = objOther.getDirection().getAngle(ccNormal);
+                                if(angleOther < 90){
+                                    objOther.getDirection().reflex(GVector2dUtils.negate(ccNormal));
+                                }else{
+                                    objOther.getDirection().reflex(ccNormal);
+                                }
+                                //调整速度
+                                var speed = (obj.speed + objOther.speed)/2;
+                                obj.speed = speed;
+                                objOther.speed = speed;
+                            }
+                            
+                            // 有重叠调整位置
                             var adjustValue = obj.radius + objOther.radius - distance;
                             obj.setPosition(objPos.x + obj.getDirection().x * adjustValue,
                                 objPos.y + obj.getDirection().y * adjustValue);
@@ -125,14 +156,27 @@ function createRandomBall(){
     ball.getDirection().rotate(Math.random() * 360);
     return ball;
 }
+function createRandomBall1(){
+    var ball = new Ball();
+    ball.setPosition(100, 110);
+    ball.getDirection().rotate(0);
+    ball.speed=100;
+    return ball;
+}
+function createRandomBall2(){
+    var ball = new Ball();
+    ball.setPosition(200, 110);
+    ball.getDirection().rotate(0);
+    return ball;
+}
 
 // 构建游戏
 var game = new Chapter02('game_screen','game_fps');
 // 启动游戏
 game.start();
 // 添加球
-game.addObject(createRandomBall());
-game.addObject(createRandomBall());
+game.addObject(createRandomBall1());
+game.addObject(createRandomBall2());
 game.addObject(createRandomBall());
 game.addObject(createRandomBall());
 game.addObject(createRandomBall());
