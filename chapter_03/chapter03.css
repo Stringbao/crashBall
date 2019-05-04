@@ -1,0 +1,27 @@
+
+body{
+    padding: 0px;
+    margin: 0px;
+}
+#game_screen{
+    width:800px;
+    height:450px;
+    background:#ececec;
+}
+#game_fps{
+    position: absolute;
+}
+.ball {
+    background-image:url('assets/ball.png');
+    background-repeat:no-repeat;
+    background-size:100% 100%;
+    -moz-background-size:100% 100%;
+}
+
+.launcher{
+    background-image:url('assets/ball.png');
+    background-repeat:no-repeat;
+    background-size:100% 100%;
+    -moz-background-size:100% 100%;
+    transform: rotate(45deg);
+}
