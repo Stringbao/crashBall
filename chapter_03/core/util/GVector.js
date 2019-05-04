@@ -1,5 +1,4 @@
-// 工具类
-var Vector2d = function(x, y) {
+function GVector(x, y) {
     this.x= x;
     this.y = y;
     // 缩放
@@ -64,14 +63,14 @@ var Vector2d = function(x, y) {
     };
     //乘 除
     this.mulNum = function(num){
-        return new Vector2d(this.x*num,this.y*num);
+        return new GVector(this.x*num,this.y*num);
     };
     /**
      *求某向量的法向量,返回一个单位向量,其模为1,返回的向量总是指向this向量的右边
      * @return
      */
     this.getNormal = function(){
-        return new Vector2d(this.y/(Math.sqrt(this.x*this.x+this.y*this.y)),-this.x/(Math.sqrt(this.x*this.x+this.y*this.y)));
+        return new GVector(this.y/(Math.sqrt(this.x*this.x+this.y*this.y)), -this.x/(Math.sqrt(this.x*this.x+this.y*this.y)));
     };
     this.reflex = function(v){
         var normal=v.getNormal();
@@ -93,17 +92,16 @@ var Vector2d = function(x, y) {
     this.toString= function () {
         return '(' + this.x.toFixed(3) + ',' + this.y.toFixed(3) + ')';
     }
-}
-
-var GVector2dUtils={
-    angle : function(start,end){
-        var diff_x = end.x - start.x,
-            diff_y = end.y - start.y;
+};
+var GVectorUtils={
+    angle : function(v1,v2){
+        var diff_x = v2.x - v1.x,
+            diff_y = v2.y - v1.y;
         //返回角度,不是弧度
         return 360*Math.atan(diff_y/diff_x)/(2*Math.PI);
     },
     negate:function(v){
-        return new Vector2d(-v.x, -v.y);
+        return new GVector(-v.x, -v.y);
     },
     // 比较两个向量是否一样
     equals:function(v1, v2){
@@ -117,13 +115,4 @@ var GVector2dUtils={
             return false;
         }
     }
-}
-
-var GPointUtils = {
-    // 获取距离
-    distance : function(p1, p2){
-        var dx = p1.x - p2.x;
-        var dy = p1.y - p2.y;
-        return Math.sqrt(Math.pow(dx,2)+Math.pow(dy,2))
-    }
-}
+};
