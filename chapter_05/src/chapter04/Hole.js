@@ -2,8 +2,8 @@
 function Hole(){
     GElement.call(this, OBJECT_TYPE.HOLE);
     // 半径
-    this._radiusX = 30;
-    this._radiusY = 20;
+    this._radiusX = 49;
+    this._radiusY = 32;
     this.getRadiusX = function(){
         return this._radiusX;
     };

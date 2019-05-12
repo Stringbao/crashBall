@@ -33,6 +33,9 @@ function GElement(type){
     this.removeEl = function(){
         GDom.remove(this._el);
     };
+    this.hide = function(){
+        GDom.hide(this._el);
+    };
     this.setPosition = function(x,y){
         if(this._position.x != x || this._position.y != y){
             this._position.x = x;

@@ -1,8 +1,8 @@
 
-function BlockBall(){
-    GElement.call(this, OBJECT_TYPE.BLOCKBALL);
+function Obstacle(){
+    GElement.call(this, OBJECT_TYPE.OBSTACLE);
     // 半径
-    this._radius = 100;
+    this._radius = 39;
     // 速度
     this._speed = 0;
     this._direction = new GVector(0,0);
@@ -23,5 +23,8 @@ function BlockBall(){
         this._el.style.width = (2*this._radius) + 'px';
         this._el.style.height = (2*this._radius) + 'px';
         return this._el;
+    }
+    this.setRadius = function(radius){
+        this._radius = radius;
     }
 }

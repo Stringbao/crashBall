@@ -33,9 +33,6 @@ function GNode(type){
         this._el.id = this._id;
         return this._el;
     };
-    this.removeEl = function(){
-        GDom.remo
-    };
     this.addObject = function(obj){
         if(obj.createEl != undefined){
             obj.createEl();

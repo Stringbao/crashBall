@@ -5,7 +5,8 @@ var OBJECT_TYPE = {
     BALL : 0x0103,
     BLOCKBALL : 0x0104,
     LAUNCHER : 0x0105,
-    HOLE : 0x0106
+    HOLE : 0x0106,
+    OBSTACLE : 0x0107
 };
 
 var BALL_STATE ={
@@ -19,10 +20,10 @@ var GAME_STATE ={
 };
 
 var DESK_BOUNDS = {
-    LEFT: 0,
+    LEFT: 60,
     TOP: 0, 
     RIGHT:1500,
-    BOTTOM : 470
+    BOTTOM : 570
 };
 
 var SETTINGS= {

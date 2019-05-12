@@ -179,7 +179,7 @@ html,body{
 }
 
 .game .hole {
-    width: 97px;
+    width: 98px;
     height: 64px;
     background: url(../img/icon_hole1.png) 0 0 no-repeat;
     position:absolute;
@@ -204,8 +204,8 @@ html,body{
 }
 
 .game .container .mainContent .steeringWheel{
-    width: 136px;
-    height: 121px;
+    width: 120px;
+    height: 120px;
     background:url("../img/icon_handle.png") 0 0 no-repeat;
     position:absolute;
     bottom: 150px;
@@ -218,3 +218,9 @@ html,body{
     background-size:100% 100%;
     -moz-background-size:100% 100%;
 }
+.game .block-ball{
+    border-radius: 50%;
+    border: 1px solid;
+    background-image:url('../img/block.png');
+}
+

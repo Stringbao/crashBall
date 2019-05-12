@@ -11,6 +11,12 @@ var GDom = {
         el.parentNode.removeChild(el);
     },
     append:function(parent, child){
-        return parent.append(child);
+        if(parent && child){
+            parent.append(child);
+        }
+        
+    },
+    hide:function(el){
+        el.style.display = "none";
     }
 };

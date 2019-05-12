@@ -50,9 +50,20 @@ function Scene() {
         this.addObject(this._launcher);
 
         var blockBall = new BlockBall();
-        blockBall.setPosition(DESK_BOUNDS.LEFT, DESK_BOUNDS.BOTTOM);
+        blockBall.setPosition(DESK_BOUNDS.LEFT - this._launcher.getRadius() , DESK_BOUNDS.BOTTOM + this._launcher.getRadius());
+        blockBall.setRadius(this._launcher.getRadius() * 3.5);
+        // blockBall.setPosition(60,570);
         this.addObject(blockBall);
+        // blockBall.hide();
 
+        var blockBall_1 = new Obstacle();
+        blockBall_1.setPosition(200, 200);
+        this.addObject(blockBall_1);
+
+        var blockBall_2 = new Obstacle();
+        blockBall_2.setPosition(450, 450);
+        this.addObject(blockBall_2);
+        
         var holeLT = new Hole();
         // holeLT.setPosition(DESK_BOUNDS.LEFT + holeLT.getRadiusX(), DESK_BOUNDS.TOP + holeLT.getRadiusY());
         
@@ -65,7 +76,7 @@ function Scene() {
 
         var holeRB = new Hole();
         // holeRB.setPosition(DESK_BOUNDS.RIGHT - holeLT.getRadiusX(), DESK_BOUNDS.BOTTOM - holeLT.getRadiusY());
-        holeRB.setPosition(1000,400);
+        holeRB.setPosition(1200,400);
         this.addObject(holeRB);
     }
 };
@@ -149,7 +160,7 @@ function SceneLoop(){
                         objOther.updated = true;
                         break;
                     }
-                } else if (objOther.getType() == OBJECT_TYPE.BLOCKBALL) {
+                } else if (objOther.getType() == OBJECT_TYPE.BLOCKBALL || objOther.getType() == OBJECT_TYPE.OBSTACLE) {
                     var distance = GPointUtils.distance(obj.getPosition(), objOther.getPosition());
                     if (obj.getState() == BALL_STATE.RUN && distance <= obj.getRadius() + objOther.getRadius()) {
                         // 计算新方向
@@ -174,7 +185,7 @@ function SceneLoop(){
                         obj.updated = true;
                         objOther.updated = true;
                         break;
-                    } else if (obj.getState() == BALL_STATE.LAUNCHING && distance > obj.getRadius() + objOther.getRadius()) {
+                    } else if (obj.getState() == BALL_STATE.LAUNCHING && objOther.getType() == OBJECT_TYPE.BLOCKBALL && distance > obj.getRadius() + objOther.getRadius()) {
                         obj.setState(BALL_STATE.RUN);
                     }
                 }
