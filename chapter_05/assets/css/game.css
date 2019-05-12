@@ -1,0 +1,220 @@
+*{
+    margin: 0;
+    padding: 0;
+    outline: none;
+    text-decoration: none;
+    list-style: none;
+}
+
+html,body{
+    width: 100%;
+    height: 100%;
+}
+
+.game{
+    width: 100%;
+    height: 100%;
+}
+
+.game .container{
+    width: 100%;
+    height: 100%;
+    background: url(../img/bg_grass.png) 0 0 no-repeat;
+    background-size: 100% 100%;
+}
+
+.game .container.grass{
+    width: 100%;
+    height: 100%;
+    background: url(../img/bg_grass.png) 0 0 no-repeat;
+    background-size: 100% 100%;
+}
+
+.game .container.sand{
+    width: 100%;
+    height: 100%;
+    background: url(../img/bg_sand.png) 0 0 no-repeat;
+    background-size: 100% 100%;
+}
+
+.game .container.sky{
+    width: 100%;
+    height: 100%;
+    background: url(../img/bg_sky.png) 0 0 no-repeat;
+    background-size: 100% 100%;
+}
+
+.game .container .optionsBar{
+    width: 701px;
+    height: 70px;
+    background: url(../img/optionsBar.png) 0 0 no-repeat;
+    margin: 0 auto;
+}
+
+.game .container .optionsBar .tab{
+    width: 600px;
+    height: 100%;
+    position: relative;
+    text-align: right;
+    padding-right: 100px;
+}
+
+.game .container .optionsBar .tab span{
+    width: 98px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    color: #72b8e7;
+    margin-right: 10px;
+    margin-top: 12px;
+    display: inline-block;
+    background: url(../img/btn_selected.png) 0 0 no-repeat;
+}
+
+.game .container .optionsBar .tab span.active{
+    color: #8aafc7;
+    background: url(../img/btn_highlight.png) 0 0 no-repeat;
+}
+
+.game .container .optionsBar .tab .tabContent{
+    position: absolute;
+    width: auto;
+    height: auto;
+    z-index:2000;
+    display: none;
+}
+
+.game .container .optionsBar .tab .tabContent[tag="skin"]{
+    top: 80px;
+    right: 230px;
+}
+
+.game .container .optionsBar .tab .tabContent[tag="power"]{
+    top: 70px;
+    right: 126px;
+}
+
+.game .container .optionsBar .tab .tabContent li{
+    padding: 7px;
+    border-radius: 5px 0;
+    margin-bottom: 10px;
+}
+
+.game .container .optionsBar .tab .tabContent[tag="skin"] li{
+    /* width: 59px; */
+    height: 45px;
+    border: 2px solid #9f944d;
+    border-radius: 10px 0;
+    background: url(../img/bg_preview.png) 0 0 no-repeat;
+    background-size: 103%;
+    background-position-x: -1px;
+    background-position-y: -1px;
+    /* border-image: -webkit-linear-gradient(#866b54,#e6c564) 30 30;
+   	border-image: -moz-linear-gradient(#866b54,#e6c564) 30 30;
+    border-image: linear-gradient(#866b54,#e6c564) 30 30;  */
+}
+
+.game .container .optionsBar .tab .tabContent[tag="skin"] li img{
+    border:2px solid #bcbae7
+}
+
+.game .container .optionsBar .tab .tabContent[tag="skin"] li.select img{
+    border:2px solid #0af408;
+}
+
+.game .container .optionsBar .tab .tabContent li img{
+    width: 64px;
+    height: 44px;
+    position: center;
+}
+
+.game .container .optionsBar .tab .tabContent[tag="power"] li{
+    width:68px;
+    height:68px;
+    border-radius: 50%;
+    padding: 0;
+    background-position: center;
+}
+
+.game .container  .tab .tabContent[tag="power"] li:nth-child(1){
+    background: url(../img/icon_levle1.png) 0 0 no-repeat;
+    background-size: 100%;
+
+}
+
+.game .container  .tab .tabContent[tag="power"] li:nth-child(1).select{
+    background: url(../img/icon_levle1_selected.png) 0 0 no-repeat;
+    background-position: center;
+    background-size: 100%;
+
+}
+
+.game .container .tab .tabContent[tag="power"] li:nth-child(2){
+    background: url(../img/icon_levle2.png) 0 0 no-repeat;
+    background-position: center;
+    background-size: 100%;
+
+}
+
+.game .container  .tab .tabContent[tag="power"] li:nth-child(2).select{
+    background: url(../img/icon_levle2_selected.png) 0 0 no-repeat;
+    background-position: center;
+    background-size: 100%;
+}
+
+.game .container .tab .tabContent[tag="power"] li:nth-child(3){
+    background: url(../img/icon_levle3.png) 0 0 no-repeat;
+    background-size: 100%;
+}
+
+.game .container  .tab .tabContent[tag="power"] li:nth-child(3).select{
+    background: url(../img/icon_levle3_selected.png) 0 0 no-repeat;
+    background-size: 100%;
+}
+
+.game .container .mainContent{
+    width: 100%;
+    height: 90%;
+    position: relative;
+}
+
+.game .hole {
+    width: 97px;
+    height: 64px;
+    background: url(../img/icon_hole1.png) 0 0 no-repeat;
+    position:absolute;
+}
+
+.game .container .mainContent .leftHole{
+    width: 97px;
+    height: 64px;
+    background: url(../img/icon_hole1.png) 0 0 no-repeat;
+    position:absolute;
+    top: 100px;
+    left: 230px;
+}
+
+.game .container .mainContent .rightHole{
+    width: 97px;
+    height: 64px;
+    background: url(../img/icon_hole2.png) 0 0 no-repeat;
+    position:absolute;
+    bottom: 150px;
+    right: 250px;
+}
+
+.game .container .mainContent .steeringWheel{
+    width: 136px;
+    height: 121px;
+    background:url("../img/icon_handle.png") 0 0 no-repeat;
+    position:absolute;
+    bottom: 150px;
+    left: 150px;
+}
+
+.ball {
+    background-image:url('../img/pic_boll.png');
+    background-repeat:no-repeat;
+    background-size:100% 100%;
+    -moz-background-size:100% 100%;
+}
