@@ -6,6 +6,7 @@ var gulp=require('gulp'),  //gulp基础库
     rename=require('gulp-rename'),   //文件重命名
     notify=require('gulp-notify');   //提示
     clean=require('gulp-clean');   //清理
+    processhtml = require('gulp-processhtml');
  
 //css处理
 gulp.task('minifycss',function(){
@@ -59,11 +60,18 @@ gulp.task('clean', function () {
 		.pipe(clean());
 });
 
+gulp.task('processhtml', function () {
+    return gulp.src('./src/*.html')
+            .pipe(processhtml())
+            .pipe(gulp.dest('dist'))
+            .pipe(notify({message:"processhtml task ok"}))
+}); 
+
 gulp.task('copy',  function() {
-    return gulp.src(['src/**/*','!src/chapter04/**/*','!src/core/**/*'])
-      .pipe(gulp.dest("dist"))
-  });
+    return gulp.src(['src/**/*','!src/chapter04/**/*','!src/core/**/*','!src/index.html'])
+        .pipe(gulp.dest("dist"))
+});
 
 gulp.task('default',function(){
-    gulp.start('clean','minifycss','minifyjs',"copy");
+    gulp.start('clean','minifycss','minifyjs',"copy","processhtml");
 });
