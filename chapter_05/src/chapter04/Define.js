@@ -27,9 +27,9 @@ var DESK_BOUNDS = {
 };
 
 var SETTINGS= {
-    BALL_COUNT:10
+    BALL_COUNT:50
 };
 // 摩擦力，1秒减少20
-var VAR_FRICTION = 20;
+var VAR_FRICTION = 10;
 // 冷却时间1秒
 var MAX_COOLDOWN_LAUNCH = 1;
