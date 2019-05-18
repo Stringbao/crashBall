@@ -1,12 +1,19 @@
+/**
+ * @description 游戏主体类
+ * @param {String} screenId 
+ */
 function Game(screenId){
     this._el = GDom.find(screenId);
+    //fps对象
     this._fps = new GFps();
+    //mouse对象, 记录鼠标位置，状态
     this._mouse = new GMouse();
     this._objects = new Array();
     this._labelFps = null;
     this._labelMouseX = null;
     this._labelMouseY = null;
     this._labelMouseState = null;
+    //update
     this.update = function(dt){
         this._mouse.update();
         for(var index = 0; index < this._objects.length; index++){
@@ -23,6 +30,7 @@ function Game(screenId){
             this._objects[index].render(dt);
         }
     };
+    //添加obj
     this.addObject = function(obj){
         if(obj.createEl != undefined){
             obj.createEl();
@@ -31,12 +39,14 @@ function Game(screenId){
         obj.init();
         this._objects.push(obj);
     };
+    //开始
     this.start = function(){
         this.init();
         var currentTicks = new Date().getTime();
         var lastTicks =  currentTicks;
         var delta = 0;
         var that = this;
+        //设置鼠标位置和状态
         document.onmousemove = function(e){
             that._mouse.receive(GMOUSE_STATE.NONE, e.x, e.y);
         };
@@ -46,15 +56,19 @@ function Game(screenId){
         document.onmouseup = function(e){
             that._mouse.receive(GMOUSE_STATE.UP, e.x, e.y);
         };
+        //动画
         requestAnimationFrame(function(){
             currentTicks = new Date().getTime();
             delta = (currentTicks - lastTicks ) / 1000;
+            //update
             that.update(delta);
+            //render
             that.render(delta);
             lastTicks = currentTicks;
             requestAnimationFrame(arguments.callee);
         });
     };
+    //初始化fpsLable，mouseLable
     this.init = function(){
         this._labelFps = new GLabel();
         this._labelFps.setPosition(DESK_BOUNDS.LEFT +10, DESK_BOUNDS.TOP + 50);
@@ -71,6 +85,5 @@ function Game(screenId){
         this._labelMouseState = new GLabel();
         this._labelMouseState.setPosition(DESK_BOUNDS.LEFT +10, DESK_BOUNDS.TOP + 140);
         this.addObject(this._labelMouseState);
-        
     };
 }

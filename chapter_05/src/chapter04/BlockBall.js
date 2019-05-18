@@ -1,4 +1,7 @@
 
+/**
+ * @description 隔断物对象，阻挡球和发射器之间的碰撞产生bug
+ */
 function BlockBall(){
     GElement.call(this, OBJECT_TYPE.BLOCKBALL);
     // 半径

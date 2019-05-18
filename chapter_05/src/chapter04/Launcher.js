@@ -1,4 +1,7 @@
 
+/**
+ * @description 发射器
+ */
 function Launcher(){
     GElement.call(this, OBJECT_TYPE.LAUNCHER);
     this._direction = new GVector(1,0);

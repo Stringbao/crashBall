@@ -1,26 +1,34 @@
 
+/**
+ * @description 发射的球对象
+ */
 function Ball(){
+    //继承与GElement对象
     GElement.call(this, OBJECT_TYPE.BALL);
     // 半径
     this._radius = 15;
     // 速度
     this._speed = 200;
+    //方向对象 ，向量
     this._direction = new GVector(0,0);
-    // 正在发射中，不与BlockBall碰撞检测
+    //球的状态，发射中和运行中，(正在发射中的球，不与BlockBall碰撞检测)
     this._state = BALL_STATE.LAUNCHING;
-    this.updated = false;
+    //设置球的状态
     this.setState = function(state){
         this._state = state;
     };
+    //获取球的状态
     this.getState = function(){
         return this._state;
     };
+    //获取球的速度
     this.getSpeed = function(){
         return this._speed;
     };
+    //设置球的速度
     this.setSpeed = function(speed){
         if(speed < 0.01){
-            this.speed = 0;
+            this._speed = 0;
         }else{
             this._speed = speed;
         }
@@ -36,6 +44,7 @@ function Ball(){
     this.getDirection = function(){
         return this._direction;
     };
+    //球的速度与方向的
     this.onUpdate = function(dt, mouse){
         // 速度递减
         this._speed -= dt * VAR_FRICTION;

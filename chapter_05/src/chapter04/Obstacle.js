@@ -1,4 +1,7 @@
 
+/**
+ * 障碍物对象，和隔断物唯一的不同就是OBJECT_TYPE不一样
+ */
 function Obstacle(){
     GElement.call(this, OBJECT_TYPE.OBSTACLE);
     // 半径

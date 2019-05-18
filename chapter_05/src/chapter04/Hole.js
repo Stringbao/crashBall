@@ -1,4 +1,7 @@
 
+/**
+ * @description 洞对象
+ */
 function Hole(){
     GElement.call(this, OBJECT_TYPE.HOLE);
     // 半径

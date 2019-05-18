@@ -3,7 +3,9 @@ GMOUSE_STATE = {
     DOWN:0x0101,
     UP:0x0102
 };
-
+/**
+ * @description 鼠标操作类，鼠标的点击状态来控制是否发射球
+ */
 function GMouse(){
     this.state = GMOUSE_STATE.NONE;
     this._position = new GPoint(0,0);

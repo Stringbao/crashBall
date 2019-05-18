@@ -1,9 +1,17 @@
+
+/**
+ * @description 点对象
+ * @param {int} x 
+ * @param {int} y 
+ */
 function GPoint(x,y){
     this.x = x;
     this.y = y;
 };
 
-
+/**
+ * @description 获取2点的距离
+ */
 var GPointUtils = {
     // 获取距离
     distance : function(p1, p2){

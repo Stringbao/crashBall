@@ -1,3 +1,8 @@
+/**
+ * 向量，计算碰撞后的方向
+ * @param {int} x 
+ * @param {int} y 
+ */
 function GVector(x, y) {
     this.x= x;
     this.y = y;
@@ -93,6 +98,10 @@ function GVector(x, y) {
         return '(' + this.x.toFixed(3) + ',' + this.y.toFixed(3) + ')';
     }
 };
+
+/**
+ * @description 向量工具类
+ */
 var GVectorUtils={
     angle : function(v1,v2){
         var diff_x = v2.x - v1.x,

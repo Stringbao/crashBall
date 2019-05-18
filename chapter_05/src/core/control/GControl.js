@@ -2,6 +2,10 @@ var GCONTROL_TYPE={
     LABEL: 0x0001
 }
 
+/**
+ * @description label组件的父类 该类型不会初始化
+ * @param {int} type 
+ */
 function GControl(type){
     GObject.call(this, null);
     this._el = null;

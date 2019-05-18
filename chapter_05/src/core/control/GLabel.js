@@ -1,3 +1,7 @@
+
+/**
+ * @description lable组件，显示数据用
+ */
 function GLabel(){
     GControl.call(this, GCONTROL_TYPE.LABEL);
     this.text = null;

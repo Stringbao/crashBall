@@ -1,3 +1,7 @@
+
+/**
+ * @description DOM操作辅助工具类
+ */
 var GDom = {
     find : function(id){
         return document.getElementById(id);
